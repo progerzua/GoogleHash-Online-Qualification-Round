@@ -10,12 +10,12 @@ def get_input(filename):
 
 
     params = raw_data[0].split()
-    R = int(params[0])
-    C = int(params[1])
-    F = int(params[2])
-    N = int(params[3])
-    B = int(params[4])
-    T = int(params[5])
+    R = int(params[0]) #ROWS
+    C = int(params[1]) #COLUMNS
+    F = int(params[2]) #VEHICLES
+    N = int(params[3]) #RIDES
+    B = int(params[4]) #BONUS
+    T = int(params[5]) #STEPS
 
     data = raw_data[1:]
     i = 0
@@ -26,7 +26,7 @@ def get_input(filename):
 
     out_arr = np.asarray(parsed_data, dtype=np.int16)
 
-    return [R, C, F, N, B, T, out_arr]
+    return R, C, F, N, B, T, out_arr
 
 if __name__ == "__main__":
     R, C, F, N, B, T, data = get_input('a_example.in')
