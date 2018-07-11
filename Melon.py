@@ -8,7 +8,7 @@ from random import randint
 2 0 2 2 0 9
 '''
 
-R, C, F, N, B, T, out_arr = get_input('b_should_be_easy.in')
+R, C, F, N, B, T, out_arr = get_input('d_metropolis.in')
 #R # ROWS
 #C # COLUMNS
 #F # VEHICLES
@@ -39,14 +39,14 @@ for i, j in enumerate(routes):
     routes_path[i] = calculate_distance(j[0], j[1], j[2], j[3])
     routes_start_point[i] = calculate_distance(0, 0, j[0], j[1])
     routes_waittime[i] = j[4]
-print(routes_path.T)
-print(routes_start_point.T)
-print(routes_waittime.T)
+#print(routes_path.T)
+#print(routes_start_point.T)
+#print(routes_waittime.T)
 
 
 List = [randint(0, F-1) for _ in range(len(routes))]
 
-print('#random', List)
+#print('#random', List)
 List_array = np.array(List)
 
 #result_rime = [{} for i in range(len(routes))]
@@ -67,14 +67,24 @@ for i, j  in enumerate(List_array):
     #print(List_array == j)
     #print(result_time[List_array==j].T)
 
-print(result_time.T)
+#print(result_time.T)
 
-print(routes[:,5] >= result_time)
-print(False in (routes[:,5] >= result_time))
+#print(routes[:,5] >= result_time)
+print(False in (routes[:,5] >= result_time[:]))
+print(False in np.unique(List_array in result_time))
 
-def give_new_coor(routes, number_route):
-    waypoint_corr[number_route] = routes[number_route,(2, 3)]
-    return waypoint_corr
+uniq = np.unique(List)
+for i in uniq:
+    indexes = []
+    for j in range(len(List)):
+        if List[j] == i:
+            indexes.append(j)
+    print(len(indexes) , indexes)
+
+
+#def give_new_coor(routes, number_route):
+#    waypoint_corr[number_route] = routes[number_route,(2, 3)]
+#    return waypoint_corr
 
 """
 for i in range(0, T):
@@ -86,3 +96,4 @@ for i in range(0, T):
             if list(waypoint_corr[j]) == [v_[0], v_[1]]:
                 give_new_coor(routes, j)
 """
+
