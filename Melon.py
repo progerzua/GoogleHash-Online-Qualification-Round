@@ -1,6 +1,5 @@
 import numpy as np
 from main import get_input
-from random import randint
 '''
 3 4 2 3 2 10
 0 0 1 3 2 9
@@ -16,18 +15,12 @@ R, C, F, N, B, T, out_arr = get_input('d_metropolis.in')
 #B # BONUS
 #T # STEPS
 v_array = np.zeros((F,2), dtype='uint8')
-v_list = []
-
-
 map_array = np.ones((R, C), dtype='bool')
 
-#SORT by final steps
-out_arr_sorted = out_arr[out_arr[:,5].argsort()]
+for i in range(0, T):
+    for v_ in v_array:
+        for coordinate in v_:
 
-routes = out_arr_sorted
-routes_path = np.zeros((len(routes), 1), dtype='uint8')
-routes_start_point = np.zeros((len(routes), 1), dtype='uint8')
-routes_waittime = np.zeros((len(routes), 1), dtype='uint8')
 
 def calculate_distance(x1,y1, x2, y2):
     xr = x1 - x2
